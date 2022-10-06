@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1689</width>
+    <height>1055</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>BEAR - BaseEdit Analyzer  </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>基本信息</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QCheckBox" name="checkBox_auto_fill_col">
+         <property name="text">
+          <string>自动向下填充</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget">
+         <column>
+          <property name="text">
+           <string>样品名</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>sgRNA</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>原始碱基</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>修改后碱基</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>碱基位置</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>测序文件</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>编辑效率</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>其它位置编辑情况:</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>-5</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>-4</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>-3</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>-1</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>5</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>6</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>9</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>10</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>11</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>12</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>13</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>14</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>15</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>16</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>17</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>18</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>19</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>20</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>21</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>22</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>23</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>24</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>26</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>结果报告</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_open_report">
+         <property name="text">
+          <string>打开报告</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButton_add_line">
+            <property name="text">
+             <string>加一行</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_del_lines">
+            <property name="text">
+             <string>删除选中行</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_import_from_sheet">
+            <property name="text">
+             <string>从表格导入</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_export_sheet">
+            <property name="text">
+             <string>导出当前表格</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_clear_table">
+            <property name="text">
+             <string>清空</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frame_2">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>当前选定：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_selection">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>上传区</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>单个测序文件应用到选区</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>多个测序文件自动对应样品名</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec_auto"/>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="title">
+              <string>自定义分隔符</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLineEdit" name="lineEdit_separator">
+                <property name="text">
+                 <string>-</string>
+                </property>
+                <property name="clearButtonEnabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextBrowser" name="textBrowser">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;-&amp;quot;前的内容将会成为样品名填充到对应行，或者填充到新行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="title">
+       <string>存储目录</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_path"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_start">
+         <property name="text">
+          <string>设置存储路径并开始分析</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_open_folder">
+         <property name="text">
+          <string>打开存储目录</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_lyric">
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1689</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlainTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header location="global">plaintextedit</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

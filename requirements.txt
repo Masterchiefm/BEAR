@@ -1,0 +1,5 @@
+matplotlib
+regex
+biopython
+pyqt5
+tabulate
