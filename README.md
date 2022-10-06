@@ -17,7 +17,7 @@ and press "Ctr + C" and "Ctr + V". And the results will be added to **a single E
 ,which allows you to analyse your data in MicroSoft Excel or WPS.
 
 ## Usage
-Download the exe file and execute it.
+Download the exe file [here](https://github.com/Masterchiefm/BEAR/releases/latest) and execute it.
 
 ### Input sample information
 Fill the first colum sample name  and the second colum guide is enough. 
