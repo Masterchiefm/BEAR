@@ -1,7 +1,7 @@
 # BEAR - BaseEdit Analyzer
 English version | [中文](/README_zh.md)
 ## Purpose
-This program is created to deal with multiple base-edit data in a short time.
+Estimate Base Editing Efficiency with Sanger Sequencing. This program is created to deal with multiple base-edit data in a short time.
 
 One of my colleague once asked me if I can help her to analyse thousands of 
 sanger sequence data and show her the edit efficiency of each sample. I was shocked
