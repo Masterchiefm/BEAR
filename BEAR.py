@@ -324,8 +324,8 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
 
             #self.exportSheet(tem_save = True)
-        msg = str("Done!","Done! \nThe html reports can be found in \n" + self.lineEdit_path.text() + "/reports")
-        QMessageBox.about(self,msg)
+        msg = "Done! \nThe html reports can be found in \n" + self.lineEdit_path.text() + "/reports"
+        QMessageBox.about(self,"Done!", msg)
 
 
 

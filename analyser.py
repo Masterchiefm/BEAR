@@ -82,6 +82,8 @@ class SangerBaseCall:
 
     def plotTarget(self, target_seq, plot_window=10):
         from matplotlib import pyplot as plt
+        plt.cla()
+        plt.close("all")
         # plt.figure(dpi=150)
         # plt.figure(figsize=(20, 4))
         plt.rcParams['figure.figsize'] = (15, 4)
@@ -246,6 +248,8 @@ class SangerBaseCall:
 
     def plotTargetHeatmap(self, data_sheet, base_of_interest=""):
         from matplotlib import pyplot as plt
+        plt.cla()
+        plt.close("all")
         sequence = data_sheet.loc["sequence"]
         columns = ["G", "A", "T", "C", "Guide"]
         sg_data = []
