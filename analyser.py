@@ -268,7 +268,7 @@ class SangerBaseCall:
         ax.set_xticks(np.arange(len(sequence)), labels=sequence)
         ax.set_yticks(np.arange(len(columns)), labels=columns)
 
-        ax.tick_params(top=True, bottom=False, labeltop=True, labelbottom=False)
+        ax.tick_params(top=True, bottom=True, labeltop=True, labelbottom=True)
 
         for i in range(len(columns)):
             for j in range(len(sequence)):
@@ -342,5 +342,6 @@ class SangerBaseCall:
 
 
 if __name__ == "__main__":
+
     a = SangerBaseCall("example.ab1")
     a.generateReport("CACTGGAATGACACACGCCC", "report_name", "test.html",plot_window=5)

@@ -2,6 +2,7 @@ import os
 import re
 import time
 
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QFileDialog, QMessageBox
 import pandas as pd
 
@@ -53,7 +54,8 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         print(self.col_names)
 
 
-
+        # self.tableWidget.resizeColumnToContents(0)
+        self.tableWidget.selectColumn(0)
 
         self.tableWidget.itemSelectionChanged.connect(self.showSelection)
         self.pushButton_add_line.clicked.connect(self.addLine)
@@ -75,6 +77,27 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
         self.tableWidget.clicked.connect(self.disableAutoFill)
         # self.tableWidget.ed
+        self.actionEnglish.triggered.connect(self.loadTanslation)
+        # self.actionChinese.triggered.connect(self.toChinese)
+
+    def loadTanslation(self):
+        path, type_ = QFileDialog.getOpenFileName(self, "Load translation file","","Qt language file(*.qm)")
+        try:
+            trans = QtCore.QTranslator()
+            trans.load(path)
+            _app = QApplication.instance()
+            _app.installTranslator(trans)
+            self.retranslateUi(self)
+        except Exception as e:
+            QMessageBox.about(self, "Translate UI Fail","Fail to change laguage!\n\n" + str(e))
+
+    def toChinese(self):
+        trans = QtCore.QTranslator()
+        # trans.load("./en")
+        _app = QApplication.instance()
+        _app.installTranslator(trans)
+
+
 
     def disableAutoFill(self):
         self.checkBox_auto_fill_col.setChecked(False)
@@ -84,8 +107,10 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         self.label_lyric.setText(lyric)
 
         file_list = self.plainTextEdit_sanger_rec_auto.toPlainText().split("file:///")
+
         self.plainTextEdit_sanger_rec_auto.clear()
         separator = self.lineEdit_separator.text().strip()
+        msg = True
         for file in file_list:
             file_path = file.replace("\n","")
             if os.path.isfile(file_path):
@@ -93,12 +118,25 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                 if "ab1" in file_name.lower():
                     sample_name = file_name.split(separator)[0]
 
+                    if msg:
+                        message = 'You are using auto fill function.\n\nThe abi file will be separated by "' +\
+                                  separator + '"\n\n' + "For example, your \n\n" +\
+                                  file_name + '\n\nwill be regarded as "' + \
+                                  sample_name + '" to fill in the table.\n\nAre you sure to do it?'
+                        answer = QMessageBox.question(self,"Auto fill table", message)
+                        # print(answer)
+                        msg = False
+                        if answer == QMessageBox.Yes:
+                            pass
+                        else:
+                            return
+
                     exist = False
                     for row in range(self.tableWidget.rowCount()):
                         sample_exist = self.tableWidget.item(row,0)
                         try:
                             if sample_name == sample_exist.text():
-                                self.tableWidget.setItem(row, self.col_name_locations["测序文件"],QTableWidgetItem(file_path))
+                                self.tableWidget.setItem(row, self.col_name_locations["Sequencing File"],QTableWidgetItem(file_path))
                                 exist = True
                         except:
                             continue
@@ -106,8 +144,8 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                     if exist == False:
                         newRow = self.tableWidget.rowCount() + 1
                         self.tableWidget.setRowCount(newRow)
-                        self.tableWidget.setItem(newRow-1, self.col_name_locations["样品名"], QTableWidgetItem(sample_name))
-                        self.tableWidget.setItem(newRow-1, self.col_name_locations["测序文件"], QTableWidgetItem(file_path))
+                        self.tableWidget.setItem(newRow-1, self.col_name_locations["Sample name"], QTableWidgetItem(sample_name))
+                        self.tableWidget.setItem(newRow-1, self.col_name_locations["Sequencing File"], QTableWidgetItem(file_path))
 
 
 
@@ -120,7 +158,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         selection = self.selected_rows
         for i in selection:
             try:
-                report_file = self.tableWidget.item(i, self.col_name_locations["结果报告"]).text()
+                report_file = self.tableWidget.item(i, self.col_name_locations["Report"]).text()
                 os.startfile(report_file)
             except Exception as e:
                 QMessageBox.about(self,"ERROR","Report Not Found!\n" + str(e))
@@ -201,12 +239,13 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
     def annalyse(self):
 
+        self.label_lyric.setText("❤❤❤❤❤❤   Analyzing... Please waite!   ❤❤❤❤❤❤")
         lyric = getLyric()
-        self.label_lyric.setText(lyric)
-
         if self.setSavePath():
-            pass
+            self.label_lyric.setText(lyric)
         else:
+
+            self.label_lyric.setText(lyric)
             return
         table = self.tableWidget
         # sheet = pd.DataFrame(columns=self.col_names)
@@ -250,12 +289,12 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                     # 这个没有填写的话就不分析了
                     base_position = int(table.item(row, 4).text().strip())
                     perc = result_sheet.loc[base_to, base_position]
-                    self.tableWidget.setItem(row,self.col_name_locations["编辑效率"],QTableWidgetItem(str("%.2f%%" % perc)))
+                    self.tableWidget.setItem(row,self.col_name_locations["Edit efficiency"],QTableWidgetItem(str("%.2f%%" % perc)))
                 except:
                     pass
             except Exception as e:
                 QMessageBox.about(self,"ERROR",sanger_file + "error:\n" + str(e))
-                self.tableWidget.setItem(row, self.col_name_locations["编辑效率"], QTableWidgetItem("Error, please check your input"))
+                self.tableWidget.setItem(row, self.col_name_locations["Edit efficiency"], QTableWidgetItem("Error, please check your input"))
                 continue
 
             for i in result_sheet.columns:
@@ -273,7 +312,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                 base_to = ""
 
             sanger.generateReport(sg, name, report_path,base_of_interest=base_to)
-            self.tableWidget.setItem(row, self.col_name_locations["结果报告"], QTableWidgetItem(str(report_path)))
+            self.tableWidget.setItem(row, self.col_name_locations["Report"], QTableWidgetItem(str(report_path)))
 
 
 
@@ -320,6 +359,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
     def showSelection(self):
         selection = self.tableWidget.selectedIndexes()
         # self.currentSelectedIndex = selection
+        self.tabWidget.setCurrentIndex(0)
         rows = []
         names = []
         for i in selection:
@@ -383,7 +423,14 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
 if __name__ == "__main__":
     import sys
+
+    # trans = QtCore.QTranslator()
+    # trans.load("./en")
+
+
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
+    # app.installTranslator(trans)
     win = MyMainWin()
     win.show()
     sys.exit(app.exec_())

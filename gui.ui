@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1689</width>
-    <height>1055</height>
+    <width>696</width>
+    <height>770</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,14 @@
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <widget class="QGroupBox" name="groupBox">
+      <property name="inputMethodHints">
+       <set>Qt::ImhPreferNumbers</set>
+      </property>
       <property name="title">
        <string>基本信息</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -30,9 +36,50 @@
        </item>
        <item>
         <widget class="QTableWidget" name="tableWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::WinPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectItems</enum>
+         </property>
+         <property name="gridStyle">
+          <enum>Qt::SolidLine</enum>
+         </property>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>false</bool>
+         </attribute>
+         <row>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </row>
          <column>
           <property name="text">
-           <string>样品名</string>
+           <string>Sample name</string>
           </property>
          </column>
          <column>
@@ -42,32 +89,32 @@
          </column>
          <column>
           <property name="text">
-           <string>原始碱基</string>
+           <string>Base from</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>修改后碱基</string>
+           <string>Base to</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>碱基位置</string>
+           <string>Base Position</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>测序文件</string>
+           <string>Sequencing File</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>编辑效率</string>
+           <string>Edit efficiency</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>其它位置编辑情况:</string>
+           <string>Efficiency around sgRNA</string>
           </property>
          </column>
          <column>
@@ -217,9 +264,14 @@
          </column>
          <column>
           <property name="text">
-           <string>结果报告</string>
+           <string>Report</string>
           </property>
          </column>
+         <item row="0" column="0">
+          <property name="text">
+           <string/>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
@@ -276,30 +328,30 @@
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QFrame" name="frame_2">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>当前选定：</string>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_selection">
-         <property name="text">
-          <string>TextLabel</string>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>当前选定：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_selection">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -310,76 +362,117 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>250</height>
+        <height>175</height>
        </size>
       </property>
       <property name="title">
-       <string>上传区</string>
+       <string>上传与分析</string>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QTabWidget" name="tabWidget">
-         <property name="currentIndex">
-          <number>1</number>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <widget class="QWidget" name="tab">
-          <attribute name="title">
-           <string>单个测序文件应用到选区</string>
-          </attribute>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="tab_2">
-          <attribute name="title">
-           <string>多个测序文件自动对应样品名</string>
-          </attribute>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec_auto"/>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="title">
-              <string>自定义分隔符</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QLineEdit" name="lineEdit_separator">
-                <property name="text">
-                 <string>-</string>
-                </property>
-                <property name="clearButtonEnabled">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QTextBrowser" name="textBrowser">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="html">
-                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>单个测序文件应用到选区</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>多个测序文件自动对应样品名</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="PlainTextEdit" name="plainTextEdit_sanger_rec_auto"/>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>自定义分隔符</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QLineEdit" name="lineEdit_separator">
+                 <property name="text">
+                  <string>-</string>
+                 </property>
+                 <property name="clearButtonEnabled">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextBrowser" name="textBrowser">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;-&amp;quot;前的内容将会成为样品名填充到对应行，或者填充到新行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>存储目录</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLineEdit" name="lineEdit_path"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_start">
+             <property name="text">
+              <string>设置存储路径并开始分析</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_open_folder">
+             <property name="text">
+              <string>打开存储目录</string>
+             </property>
             </widget>
            </item>
           </layout>
@@ -390,35 +483,11 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item>
-     <widget class="QGroupBox" name="groupBox_6">
-      <property name="title">
-       <string>存储目录</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QLineEdit" name="lineEdit_path"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_start">
-         <property name="text">
-          <string>设置存储路径并开始分析</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_open_folder">
-         <property name="text">
-          <string>打开存储目录</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
      <widget class="QLabel" name="label_lyric">
       <property name="text">
-       <string>TextLabel</string>
+       <string>BaseEdit-Analyser
+
+——Written by M.Q. at ShanghaiTech University</string>
       </property>
      </widget>
     </item>
@@ -429,12 +498,47 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1689</width>
+     <width>696</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuTo_English">
+    <property name="title">
+     <string>Change Language</string>
+    </property>
+    <addaction name="actionEnglish"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="action"/>
+    <addaction name="action_2"/>
+   </widget>
+   <addaction name="menuTo_English"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>load translation file</string>
+   </property>
+  </action>
+  <action name="actionChinese">
+   <property name="text">
+    <string>Chinese</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>说明</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>视频教程</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
