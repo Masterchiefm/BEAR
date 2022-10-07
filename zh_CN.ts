@@ -274,12 +274,12 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;SimSun&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;-&amp;quot;前的内容将会成为样品名填充到对应行，或者填充到新行。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&#xe5;&#x88;&#x86;&#xe9;&#x9a;&#x94;&#xe7;&#xac;&#xa6;&#xe5;&#x89;&#x8d;&#xe7;&#x9a;&#x84;&#xe5;&#x86;&#x85;&#xe5;&#xae;&#xb9;&#xe5;&#xb0;&#x86;&#xe4;&#xbc;&#x9a;&#xe6;&#x88;&#x90;&#xe4;&#xb8;&#xba;&#xe6;&#xa0;&#xb7;&#xe5;&#x93;&#x81;&#xe5;&#x90;&#x8d;&#xe5;&#xa1;&#xab;&#xe5;&#x85;&#x85;&#xe5;&#x88;&#xb0;&#xe5;&#xaf;&#xb9;&#xe5;&#xba;&#x94;&#xe8;&#xa1;&#x8c;&#xef;&#xbc;&#x8c;&#xe6;&#x88;&#x96;&#xe8;&#x80;&#x85;&#xe5;&#xa1;&#xab;&#xe5;&#x85;&#x85;&#xe5;&#x88;&#xb0;&#xe6;&#x96;&#xb0;&#xe8;&#xa1;&#x8c;&#xe3;&#x80;&#x82;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;SimSun&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The infomation before &amp;quot;-&amp;quot;will be regard as sample name and put to the table.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The infomation before custom separator will be regard as sample name and put to the table.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="gui.py" line="367"/>
@@ -316,7 +316,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="gui.py" line="375"/>
         <source>帮助</source>
-        <translatorcomment>Help</translatorcomment>
         <translation>Help</translation>
     </message>
     <message>
@@ -332,13 +331,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="gui.py" line="378"/>
         <source>说明</source>
-        <translatorcomment>About</translatorcomment>
         <translation>About</translation>
     </message>
     <message>
         <location filename="gui.py" line="379"/>
         <source>视频教程</source>
-        <translatorcomment>Video Tutor</translatorcomment>
         <translation>Video Tutor</translation>
     </message>
 </context>

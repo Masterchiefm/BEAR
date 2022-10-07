@@ -247,13 +247,13 @@ class Ui_MainWindow(object):
         self.actionEnglish.setObjectName("actionEnglish")
         self.actionChinese = QtWidgets.QAction(MainWindow)
         self.actionChinese.setObjectName("actionChinese")
-        self.action = QtWidgets.QAction(MainWindow)
-        self.action.setObjectName("action")
-        self.action_2 = QtWidgets.QAction(MainWindow)
-        self.action_2.setObjectName("action_2")
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
+        self.actionTutor = QtWidgets.QAction(MainWindow)
+        self.actionTutor.setObjectName("actionTutor")
         self.menuTo_English.addAction(self.actionEnglish)
-        self.menuAbout.addAction(self.action)
-        self.menuAbout.addAction(self.action_2)
+        self.menuAbout.addAction(self.actionAbout)
+        self.menuAbout.addAction(self.actionTutor)
         self.menubar.addAction(self.menuTo_English.menuAction())
         self.menubar.addAction(self.menuAbout.menuAction())
 
@@ -363,7 +363,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">&quot;-&quot;前的内容将会成为样品名填充到对应行，或者填充到新行。</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">分隔符前的内容将会成为样品名填充到对应行，或者填充到新行。</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "多个测序文件自动对应样品名"))
         self.groupBox_6.setTitle(_translate("MainWindow", "存储目录"))
         self.pushButton_start.setText(_translate("MainWindow", "设置存储路径并开始分析"))
@@ -375,6 +375,6 @@ class Ui_MainWindow(object):
         self.menuAbout.setTitle(_translate("MainWindow", "帮助"))
         self.actionEnglish.setText(_translate("MainWindow", "load translation file"))
         self.actionChinese.setText(_translate("MainWindow", "Chinese"))
-        self.action.setText(_translate("MainWindow", "说明"))
-        self.action_2.setText(_translate("MainWindow", "视频教程"))
+        self.actionAbout.setText(_translate("MainWindow", "说明"))
+        self.actionTutor.setText(_translate("MainWindow", "视频教程"))
 from plaintextedit import PlainTextEdit

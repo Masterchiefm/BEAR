@@ -76,9 +76,16 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         self.plainTextEdit_sanger_rec_auto.dropped.connect(self.autoInputSanger)
 
         self.tableWidget.clicked.connect(self.disableAutoFill)
-        # self.tableWidget.ed
+
         self.actionEnglish.triggered.connect(self.loadTanslation)
-        # self.actionChinese.triggered.connect(self.toChinese)
+        self.actionAbout.triggered.connect(self.showAbout)
+        self.actionTutor.triggered.connect(self.showTutor)
+
+    def showAbout(self):
+        os.startfile("https://gitee.com/MasterChiefm/BEAR/blob/master/README.md")
+
+    def showTutor(self):
+        QMessageBox.about(self, "Sorry", "Not now, please waite.")
 
     def loadTanslation(self):
         path, type_ = QFileDialog.getOpenFileName(self, "Load translation file","","Qt language file(*.qm)")
