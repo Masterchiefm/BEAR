@@ -313,7 +313,7 @@ class SangerBaseCall:
 
         return sheet
 
-    def plotTargetHeatmap(self, data_sheet, base_of_interest="", color_map="YlGn"):
+    def plotTargetHeatmap(self, data_sheet, base_of_interest="", color_map="Accent"):
         from matplotlib import pyplot as plt
         plt.cla()
         plt.close("all")
@@ -377,7 +377,7 @@ class SangerBaseCall:
         return md
 
     def generateReport(self, target_seq, report_name, save_path, plot_window=5, base_of_interest=""):
-        sanger_plot = self.plotTarget(target_seq=target_seq, plot_window=plot_window)
+        sanger_plot = self.plotTarget(target_seq=target_seq, plot_window=10)
         sanger_plot_md = self.plt2md(sanger_plot)
 
         perc_around_guide_sheet = self.getTargetData(target_seq=target_seq, annalyse_window=plot_window)
