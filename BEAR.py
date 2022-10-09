@@ -14,7 +14,7 @@ import requests
 def getLyric():
     try:
         url2 = 'https://v1.jinrishici.com/all'
-        lyric = requests.get(url2, timeout=2).json()
+        lyric = requests.get(url2, timeout=1).json()
         content = lyric['content']
         try:
             origin = lyric['origin']

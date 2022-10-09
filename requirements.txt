@@ -3,3 +3,7 @@ regex
 biopython
 pyqt5
 tabulate
+pandas
+openpyxl
+markdown
+requests
