@@ -37,7 +37,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         super(MyMainWin, self).__init__(parent)
 
         self.setupUi(self)
-
+        self.version = "1.1.1"
         output = "BaseEdit-Analyser" + "\n\t\t\t" + "——Written by M.Q. at ShanghaiTech University"
         self.label_lyric.setText(output)
         self.selected_rows = []
@@ -79,6 +79,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         self.actionEnglish.triggered.connect(self.loadTanslation)
         self.actionAbout.triggered.connect(self.showAbout)
         self.actionTutor.triggered.connect(self.showTutor)
+        self.checkUpdate()
 
 
     def checkUpdate(self):
@@ -101,7 +102,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
             else:
                 msg = latestVersion + "\n" + releaseInfo
                 QMessageBox.about(self,"更新",msg)
-                os.startfile("https://gitee.com/MasterChiefm/PlasmidManager/releases")
+                os.startfile("https://gitee.com/MasterChiefm/BEAR/releases")
         except Exception as e:
             QMessageBox.about(self,"网络错误","无法连接到GitHub服务器")
             print(e)
@@ -110,7 +111,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         os.startfile("https://gitee.com/MasterChiefm/BEAR/blob/master/README.md")
 
     def showTutor(self):
-        QMessageBox.about(self, "Sorry", "NO")
+        os.startfile("https://www.bilibili.com/video/BV1sG411E71G")
 
     def loadTanslation(self):
         path, type_ = QFileDialog.getOpenFileName(self, "Load translation file","","Qt language file(*.qm)")
