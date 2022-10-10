@@ -1,6 +1,5 @@
 import os
-import re
-import time
+import json
 
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QFileDialog, QMessageBox
@@ -81,11 +80,37 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.showAbout)
         self.actionTutor.triggered.connect(self.showTutor)
 
+
+    def checkUpdate(self):
+        """使用requests模块和GitHub api获取最新版本"""
+
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
+        latestInfo = requests.get("https://gitee.com/api/v5/repos/MasterChiefm/BEAR/releases/latest", timeout=2,  headers= headers)
+        # print(latestInfo)
+        try:
+            info = latestInfo.text
+            info = json.loads(info)
+            # print(info)
+            latestVersion = info["tag_name"]
+            releaseInfo = info["body"]
+            #print(latestVersion)
+
+            if latestVersion == self.version:
+                QMessageBox.about(self, "更新", "已经是最新")
+            else:
+                msg = latestVersion + "\n" + releaseInfo
+                QMessageBox.about(self,"更新",msg)
+                os.startfile("https://gitee.com/MasterChiefm/PlasmidManager/releases")
+        except Exception as e:
+            QMessageBox.about(self,"网络错误","无法连接到GitHub服务器")
+            print(e)
+
     def showAbout(self):
         os.startfile("https://gitee.com/MasterChiefm/BEAR/blob/master/README.md")
 
     def showTutor(self):
-        QMessageBox.about(self, "Sorry", "Not now, please waite.")
+        QMessageBox.about(self, "Sorry", "NO")
 
     def loadTanslation(self):
         path, type_ = QFileDialog.getOpenFileName(self, "Load translation file","","Qt language file(*.qm)")
@@ -117,7 +142,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
         self.plainTextEdit_sanger_rec_auto.clear()
         separator = self.lineEdit_separator.text().strip()
-        msg = True
+        # msg = True
         for file in file_list:
             file_path = file.replace("\n","")
             if os.path.isfile(file_path):
@@ -125,18 +150,18 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                 if "ab1" in file_name.lower():
                     sample_name = file_name.split(separator)[0]
 
-                    if msg:
-                        message = 'You are using auto fill function.\n\nThe abi file will be separated by "' +\
-                                  separator + '"\n\n' + "For example, your \n\n" +\
-                                  file_name + '\n\nwill be regarded as "' + \
-                                  sample_name + '" to fill in the table.\n\nAre you sure to do it?'
-                        answer = QMessageBox.question(self,"Auto fill table", message)
-                        # print(answer)
-                        msg = False
-                        if answer == QMessageBox.Yes:
-                            pass
-                        else:
-                            return
+                    # if msg:
+                    #     message = 'You are using auto fill function.\n\nThe abi file will be separated by "' +\
+                    #               separator + '"\n\n' + "For example, your \n\n" +\
+                    #               file_name + '\n\nwill be regarded as "' + \
+                    #               sample_name + '" to fill in the table.\n\nAre you sure to do it?'
+                    #     answer = QMessageBox.question(self,"Auto fill table", message)
+                    #     # print(answer)
+                    #     msg = False
+                    #     if answer == QMessageBox.Yes:
+                    #         pass
+                    #     else:
+                    #         return
 
                     exist = False
                     for row in range(self.tableWidget.rowCount()):
