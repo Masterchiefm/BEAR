@@ -392,7 +392,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
     def showSelection(self):
         selection = self.tableWidget.selectedIndexes()
         # self.currentSelectedIndex = selection
-        self.tabWidget.setCurrentIndex(0)
+        # self.tabWidget.setCurrentIndex(0)
         rows = []
         names = []
         for i in selection:
