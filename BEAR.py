@@ -335,8 +335,12 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                 except:
                     pass
             except Exception as e:
-                QMessageBox.about(self,"ERROR",sanger_file + "error:\n" + str(e))
-                self.tableWidget.setItem(row, self.col_name_locations["Edit efficiency"], QTableWidgetItem("Error, please check your input"))
+                # QMessageBox.about(self,"ERROR",sanger_file + "error:\n" + str(e))
+                self.tableWidget.setItem(row, self.col_name_locations["Edit efficiency"], QTableWidgetItem("Error, please check your input" + str(e)))
+                continue
+            if type(result_sheet) == type("a"):
+                self.tableWidget.setItem(row, self.col_name_locations["Edit efficiency"],
+                                         QTableWidgetItem("Error, target not found!"))
                 continue
 
             for i in result_sheet.columns:
