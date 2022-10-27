@@ -42,12 +42,15 @@ class SangerBaseCall:
         # 整体的噪音
         self.noise = {"G": [], "A": [], "T": [], "C": []}
 
-    def locTartet(self, target_seq, max_mismatch=2):
+    def locTartet(self, target_seq, max_mismatch=10):
         # Find the match site and location
         match_seqs = []
         for i in range(int(max_mismatch)):
+            if i > 5:
+                print("WARING! mismatch num over 5!")
+
             target_is_reversed = False
-            target_seq = Seq(target_seq.upper())
+            target_seq = Seq(str(target_seq).upper())
             match_seqs = regex.findall("(" + str(target_seq) + ")" + '{e<=' + str(i) + '}', self.sanger_seq)
 
             if match_seqs == []:
@@ -90,7 +93,7 @@ class SangerBaseCall:
         # plt.figure(figsize=(20, 4))
         plt.rcParams['figure.figsize'] = (15, 4)
         colors = ("black", "green", "red", "blue")  # GATC
-        target_location = self.locTartet(target_seq)
+        target_location = self.locTartet(str(target_seq))
         print(target_location)
 
         if target_location[1] < target_location[2]:
@@ -161,8 +164,11 @@ class SangerBaseCall:
         """获取靶位点上各个碱基的信号占比，以及靶位点外的噪音平均值"""
         # plt.rcParams['figure.figsize'] = (15, 4)
         # colors = ("black", "green", "red", "blue")  # GATC
-        target_location = self.locTartet(target_seq)
+        target_location = self.locTartet(str(target_seq))
         print(target_location)
+
+        if str(target_location) == "None":
+            return "None"
 
         if target_location[1] < target_location[2]:
             target_reverse = False

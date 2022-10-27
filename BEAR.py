@@ -98,13 +98,18 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
             #print(latestVersion)
 
             if latestVersion == self.version:
-                QMessageBox.about(self, "更新", "已经是最新")
+                # QMessageBox.about(self, "更新", "已经是最新")
+                return
             else:
                 msg = latestVersion + "\n" + releaseInfo
-                QMessageBox.about(self,"更新",msg)
-                os.startfile("https://gitee.com/MasterChiefm/BEAR/releases")
+                # QMessageBox.about(self,"更新",msg)
+                answer = QMessageBox.question(self,"New BEAR version found", msg + "\n\n Update now?")
+                if answer == QMessageBox.Yes:
+                    os.startfile("https://gitee.com/MasterChiefm/BEAR/releases/latest")
+                else:
+                    return
         except Exception as e:
-            QMessageBox.about(self,"网络错误","无法连接到GitHub服务器")
+            # QMessageBox.about(self,"网络错误","无法连接到GitHub服务器")
             print(e)
 
     def showAbout(self):
@@ -317,6 +322,10 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
             try:
                 sanger = SangerBaseCall(sanger_file)
                 result_sheet = sanger.getTargetData(target_seq=sg,annalyse_window=5)
+                # if result_sheet == "None":
+                #     QMessageBox.about(self, "ERROR", "Target Not Found!")
+
+
 
                 try:
                     # 这个没有填写的话就不分析了
