@@ -408,14 +408,19 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         # self.tabWidget.setCurrentIndex(0)
         rows = []
         names = []
+
         for i in selection:
             row = i.row()
             try:
                 name = self.tableWidget.item(row, 0).text()
             except:
                 name = ""
-            rows.append(row)
-            names.append(name)
+
+            if row in rows:
+                pass
+            else:
+                rows.append(row)
+                names.append(name)
         if len(rows) > 10:
             self.label_selection.setText("选中了" + str(len(rows)) + "个")
         else:
@@ -433,10 +438,6 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
             for i in selection:
                 row = i.row()
                 self.tableWidget.setItem(row, col, QTableWidgetItem(first_data))
-
-
-
-
 
 
 
