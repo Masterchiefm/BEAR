@@ -411,7 +411,7 @@
                <item>
                 <widget class="QLineEdit" name="lineEdit_separator">
                  <property name="text">
-                  <string>-</string>
+                  <string>_</string>
                  </property>
                  <property name="clearButtonEnabled">
                   <bool>true</bool>
