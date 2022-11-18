@@ -8,6 +8,7 @@ import pandas as pd
 from io import BytesIO
 import base64
 import tabulate
+from Bio import pairwise2
 
 
 class SangerBaseCall:
@@ -44,46 +45,39 @@ class SangerBaseCall:
 
     def locTartet(self, target_seq, max_mismatch=10):
         # Find the match site and location
-        match_seqs = []
-        for i in range(int(max_mismatch)):
-            if i > 5:
-                print("WARING! mismatch num over 5!")
+        target_is_reversed = False
+        target_seq = str(target_seq).upper()
+        alignment_1 = pairwise2.align.localms(target_seq, self.sanger_seq, 2, -.1, -4, -2, one_alignment_only=True)
+        target_seq_reversed = str(Seq(target_seq).reverse_complement())
+        alignment_2 = pairwise2.align.localms(target_seq_reversed, self.sanger_seq, 2, -.1, -4, -2,
+                                              one_alignment_only=True)
+        try:
+            alignment_1[0]
+        except:
+            alignment_1 = [[0, 0, 0]]
+        try:
+            alignment_2[0]
+        except:
+            alignment_2 = [[0, 0, 0]]
 
-            target_is_reversed = False
-            target_seq = Seq(str(target_seq).upper())
-            match_seqs = regex.findall("(" + str(target_seq) + ")" + '{e<=' + str(i) + '}', self.sanger_seq)
-
-            if match_seqs == []:
-                # target_seq = target_seq.reverse_complement()
-                match_seqs = regex.findall("(" + str(target_seq.reverse_complement()) + ")" + '{e<=' + str(i) + '}',
-                                           self.sanger_seq)
-                target_is_reversed = True
-            else:
-                break
-
-            if match_seqs == []:
-                continue
-            else:
-                break
-
-        if match_seqs == []:
-            return
-
-        match_seq = match_seqs[0]
-        span = re.search(str(match_seq), self.sanger_seq)
-        if span:
-            span = span.span()
-            if target_is_reversed:
-                location_start = span[1]
-                location_end = span[0]
-            else:
-                location_start = span[0]
-                location_end = span[1]
-            # print(i)
-            return (str(match_seq), location_start, location_end)
-
+        if alignment_2[0][2] > alignment_1[0][2]:
+            alignment = alignment_2
         else:
-            return
+            alignment = alignment_1
+        # print(alignment)
+
+        if target_is_reversed:
+            # print('reverse')
+            location_start = alignment[0][3]
+            location_end = alignment[0][4]
+            # print(location_start,location_end)
+            match_seq = str(alignment[location_end][location_start]).upper()
+        else:
+            location_start = alignment[0][3]
+            location_end = alignment[0][4]
+            match_seq = str(alignment[0][1][location_start:location_end]).upper()
+
+        return (match_seq, location_start, location_end)
 
     def plotTarget(self, target_seq, plot_window=10):
         from matplotlib import pyplot as plt
@@ -148,14 +142,14 @@ class SangerBaseCall:
         if sg_plot_start < sg_plot_end:
             sg_plot_end = self.annotation[target_location[2] - 1][1]
             SG = ax.plot([sg_plot_start - plot_start, sg_plot_end - plot_start], [-150, -150], color="brown",
-                         label='sgRNA', marker=">")
+                         label='Target', marker=">")
 
 
 
         else:
             sg_plot_start = self.annotation[target_location[1]][1]
             SG = ax.plot([sg_plot_end - plot_start, sg_plot_start - plot_start - 9], [-150, -150], color="purple",
-                         label='sgRNA', marker="<")
+                         label='Target', marker="<")
 
         plt.legend()
         return plt
@@ -165,7 +159,7 @@ class SangerBaseCall:
         # plt.rcParams['figure.figsize'] = (15, 4)
         # colors = ("black", "green", "red", "blue")  # GATC
         target_location = self.locTartet(str(target_seq))
-        print(target_location)
+        # print(target_location)
 
         if str(target_location) == "None":
             return "None"
@@ -175,13 +169,13 @@ class SangerBaseCall:
             base_start = target_location[1] - annalyse_window
             base_end = target_location[2] + annalyse_window
             base_5p_loc = target_location[1]
-            print(base_start, base_end)
+            # print(base_start, base_end)
         else:
             target_reverse = True
             base_start = target_location[2] - annalyse_window
             base_end = target_location[1] + annalyse_window
             base_5p_loc = target_location[1]
-            print(base_start, base_end)
+            # print(base_start, base_end)
 
         if base_start * base_end <= 0:
             print("Plot window size out of range")
@@ -201,7 +195,7 @@ class SangerBaseCall:
             noise_end_2 = base_end + 120
 
         self.noise = {"G": [], "A": [], "T": [], "C": []}  # 用来记录噪音，后续计算平均值和方差
-        print(noise_start_1, noise_end_1)
+        # print(noise_start_1, noise_end_1)
         for i in range(noise_start_1, noise_end_1):
             if i in self.location_base_annotation:
                 peak = i

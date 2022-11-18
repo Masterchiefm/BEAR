@@ -37,7 +37,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         super(MyMainWin, self).__init__(parent)
 
         self.setupUi(self)
-        self.version = "1.1.2"
+        self.version = "1.2.0"
         output = "BaseEdit-Analyser" + "\n\t\t\t" + "——Written by M.Q. at ShanghaiTech University"
         self.label_lyric.setText(output)
         self.selected_rows = []
@@ -259,9 +259,9 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
             data = sheet.iloc[row]
             for col in range(len(sheet.columns)):
                 text = str(sheet.iloc[row][col])
-                if col == 0:
-                    if text == "nan":
-                        return
+                # if col == 0:
+                #     if text == "nan":
+                #         return
                 if text == "nan":
                     text = ""
 
@@ -280,9 +280,8 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         self.label_lyric.setText("❤❤❤❤❤❤   Analyzing... Please waite!   ❤❤❤❤❤❤")
         lyric = getLyric()
         if self.setSavePath():
-            self.label_lyric.setText(lyric)
+            pass
         else:
-
             self.label_lyric.setText(lyric)
             return
         table = self.tableWidget
@@ -363,6 +362,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
             #self.exportSheet(tem_save = True)
         msg = "Done! \nThe html reports can be found in \n" + self.lineEdit_path.text() + "/reports"
+        self.label_lyric.setText(lyric)
         QMessageBox.about(self,"Done!", msg)
 
 
