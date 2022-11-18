@@ -25,6 +25,10 @@
 [Bilibili - BEAR使用教程](https://www.bilibili.com/video/BV1sG411E71G/)
 
 ### 测试文件
+测试文件可在此下载
+[55-ABE-VEGFA-R_H01%20(1).ab1](https://gitee.com/MasterChiefm/BEAR/raw/master/55-ABE-VEGFA-R_H01%20(1).ab1)
+
+该测序样本的编辑区域为CCCGGCTCTGGCTAAA，碱基将从C编辑为T
 
 ### 输入基本样品信息
 运行后，你将会看到一个类似excel表格的界面，你只需要填写好样品名，sgRNA序列这两个基本信息就可以运行了。
