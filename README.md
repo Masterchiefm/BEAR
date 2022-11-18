@@ -33,6 +33,8 @@ Import the excel table to this program.
 
 
 ### Video Tutor
+[Bilibili - BEAR使用教程](https://www.bilibili.com/video/BV1sG411E71G/)
+
 
 ### Example file
 [55-ABE-VEGFA-R_H01%20(1).ab1](https://github.com/Masterchiefm/BEAR/blob/master/55-ABE-VEGFA-R_H01%20(1).ab1)
