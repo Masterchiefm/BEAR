@@ -37,7 +37,8 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         super(MyMainWin, self).__init__(parent)
 
         self.setupUi(self)
-        self.version = "1.2.1"
+        self.version = "1.2.0"
+        self.setWindowTitle(self.windowTitle() + "v"+self.version)
         output = "BaseEdit-Analyser" + "\n\t\t\t" + "——Written by M.Q. at ShanghaiTech University"
         self.label_lyric.setText(output)
         self.selected_rows = []
