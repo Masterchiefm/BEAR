@@ -31,6 +31,14 @@ position you want.
 Or you can export the current table, and edit the table in Excel. After edited,
 Import the excel table to this program.
 
+
+### Video Tutor
+
+### Example file
+[55-ABE-VEGFA-R_H01%20(1).ab1](https://github.com/Masterchiefm/BEAR/blob/master/55-ABE-VEGFA-R_H01%20(1).ab1)
+
+The target site is CCCGGCTCTGGCTAAA, and the base, C, will be converte to T.
+
 ### Upload Sanger Sequencing File
 For the sequencing file, just select multi samples and drag them to reorganization 
 area. Or you can click the 2nd tab to auto fill the table.

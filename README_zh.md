@@ -26,7 +26,7 @@
 
 ### 测试文件
 测试文件可在此下载
-[55-ABE-VEGFA-R_H01%20(1).ab1](https://gitee.com/MasterChiefm/BEAR/raw/master/55-ABE-VEGFA-R_H01%20(1).ab1)
+[55-ABE-VEGFA-R_H01%20(1).ab1](https://gitee.com/MasterChiefm/BEAR/blob/master/55-ABE-VEGFA-R_H01%20(1).ab1)
 
 该测序样本的编辑区域为CCCGGCTCTGGCTAAA，碱基将从C编辑为T
 
