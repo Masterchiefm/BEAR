@@ -1,6 +1,5 @@
 import markdown
 from Bio import SeqIO
-import regex, re
 from Bio.Seq import Seq
 from collections import defaultdict
 import numpy as np
@@ -24,8 +23,11 @@ class SangerBaseCall:
 
         # 列出每个碱基位置上分别是什么碱基和他对应的测序峰值位置。
         for i in range(len(self.sanger_seq)):
-            self.annotation[i] = [self.sanger_seq[i], base_locations[i]]
-            self.location_base_annotation[base_locations[i]] = self.sanger_seq[i]
+            try:
+                self.annotation[i] = [self.sanger_seq[i], base_locations[i]]
+                self.location_base_annotation[base_locations[i]] = self.sanger_seq[i]
+            except:
+                continue
 
         # 列出每个信号列中的信号值
         channels = {"G": "DATA9", "A": "DATA10", "T": "DATA11", "C": "DATA12"}  # GATC

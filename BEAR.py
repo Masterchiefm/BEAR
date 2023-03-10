@@ -37,7 +37,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         super(MyMainWin, self).__init__(parent)
 
         self.setupUi(self)
-        self.version = "1.2.0"
+        self.version = "1.2.1"
         self.setWindowTitle(self.windowTitle() + "v"+self.version)
         output = "BaseEdit-Analyser" + "\n\t\t\t" + "——Written by M.Q. at ShanghaiTech University"
         self.label_lyric.setText(output)
@@ -312,6 +312,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
                     continue
 
             except Exception as e:
+                print("fuck")
                 QMessageBox.about(self,"ERROR","please check input" + str(e))
                 continue
 

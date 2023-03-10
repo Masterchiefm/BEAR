@@ -1,9 +1,9 @@
 matplotlib
-regex
-biopython
+biopython==1.81
 pyqt5
 tabulate
 pandas
 openpyxl
 markdown
 requests
+pyinstaller
