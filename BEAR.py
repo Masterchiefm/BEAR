@@ -37,7 +37,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
         super(MyMainWin, self).__init__(parent)
 
         self.setupUi(self)
-        self.version = "1.2.1"
+        self.version = "1.3.1"
         self.setWindowTitle(self.windowTitle() + "v"+self.version)
         output = "BaseEdit-Analyser" + "\n\t\t\t" + "——Written by M.Q. at ShanghaiTech University"
         self.label_lyric.setText(output)
@@ -290,7 +290,10 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
         for row in range(self.tableWidget.rowCount()):
             try:
-                name = table.item(row, 0).text().strip()
+                try:
+                    name = table.item(row, 0).text().strip()
+                except:
+                    continue
                 sg = table.item(row, 1).text().strip()
                 try:
                     base_from = table.item(row,2).text().upper().strip()
@@ -313,7 +316,7 @@ class MyMainWin(QMainWindow, Ui_MainWindow):
 
             except Exception as e:
                 print("fuck")
-                QMessageBox.about(self,"ERROR","please check input" + str(e))
+                QMessageBox.about(self,"ERROR","发现空行或发生错误，跳过。\nplease check input" + str(e))
                 continue
 
 

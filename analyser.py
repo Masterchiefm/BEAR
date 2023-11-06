@@ -240,7 +240,7 @@ class SangerBaseCall:
 
         result = {}
         # fig, ax = plt.subplots()
-        sheet = pd.DataFrame(index=["G", "A", "T", "C", "sequence", "guide"])
+        sheet = pd.DataFrame(index=["G", "A", "T", "C", "sequence", "guide"],dtype=object)
         for i in range(plot_start, plot_end):
             if i in self.location_base_annotation:
                 peak = i
@@ -315,7 +315,7 @@ class SangerBaseCall:
 
         return sheet
 
-    def plotTargetHeatmap(self, data_sheet, base_of_interest="", color_map="Accent"):
+    def plotTargetHeatmap(self, data_sheet, base_of_interest="", color_map="Blues"):
         from matplotlib import pyplot as plt
         plt.cla()
         plt.close("all")
@@ -333,25 +333,31 @@ class SangerBaseCall:
         data = np.array([data_sheet.loc["G"],
                          data_sheet.loc["A"],
                          data_sheet.loc["T"],
-                         data_sheet.loc["C"],
-                         sg_data]).astype("float")
+                         data_sheet.loc["C"],#sg_data
+                         ]).astype("float")
 
+        # fig, axes = plt.subplots(2,1,figsize=(20, 6))
         fig, ax = plt.subplots(figsize=(20, 6))
+        # ax = axes[0]
         ax.set_title(
-            "Each base (ACGT) signal intensity at each position along " + "".join(list(data_sheet.loc["guide"])))
+            "Signal intensity of each base in the sequence " + "".join(list(data_sheet.loc["guide"])))
         im = ax.imshow(data, cmap=color_map)
 
         ax.set_xticks(np.arange(len(sequence)), labels=sequence)
-        ax.set_yticks(np.arange(len(columns)), labels=columns)
+        ax.set_yticks(np.arange(len(columns)-1), labels=columns[:-1])
 
-        ax.tick_params(top=True, bottom=True, labeltop=True, labelbottom=True)
+        ax.tick_params(top=False, bottom=False, labeltop=False, labelbottom=True, left=False)
+        # ax2 = axes[1]
+        # ax2.imshow([sg_data])
+        # ax2.set_xticks(np.arange(len(sequence)), labels=sequence)
+
 
         for i in range(len(columns)):
             for j in range(len(sequence)):
                 if i < 4:
                     text = ax.text(j, i, round(data[i, j], 1), ha="center", va="center", color="black")
                 else:
-                    text = ax.text(j, i, list(sequence.index)[j], ha="center", va="center", color="black")
+                    text = ax.text(j, i + 0.2, list(sequence.index)[j], ha="center", va="center", color="red")
         if base_of_interest == "":
             pass
         elif base_of_interest == "G":
@@ -388,29 +394,43 @@ class SangerBaseCall:
 
         title = "# BaseEdit Report of " + report_name + "\n"
         sep = "\n\n---------"
-        description = """## Description 
+        description = """## Description 描述
         \n\nthis file contains the sanger sequencing report around the guide 
-        """ + target_seq + "\n"
+        """ + target_seq + f"\n\n 此文件包含了靶序列({target_seq})以及其上下游部分序列的测序分析结果。若有碱基编辑，则有套峰出现。"
 
         sub_title_1 = "\n\n## Sanger sequencing result around " + target_seq + "\n\n"
-        Fig1_annotation = "\n\nThis figure shows the Sanger sequencing signal quality."
+        Fig1_annotation = "\n\nThis figure shows the Sanger sequencing signal quality." + f"此图展示了靶位点及其附件的Sanger测序质量"
 
-        sub_title_2 = "\n\n## Base call result in each position around " + target_seq + "\n"
+        sub_title_2 = "\n\n## Base call result in each position around " + target_seq + "靶位点及其上下游各碱基的信号强度\n"
         Fig2_annotation = """\n\nThis figure shows the possibilities of each base at each sequencing position. 
-                                Guide position at the botton line shows the relative position to your guide RNA.\n"""
+                                Guide position at the botton line shows the relative position to your guide RNA.\n\n
+                                
+                                此图展示了各位点上各个碱基的信号强度，
+                                """
         if base_of_interest != "":
-            Fig2_annotation = Fig2_annotation + "\n\nThe red rectangle is the base you want to convert to."
-            description = description + "\n\nThis sample is supposed to be converted to " + base_of_interest
+            Fig2_annotation = Fig2_annotation + "\n\nThe red rectangle is the base you want to convert to.\n\n红框为你要改变的碱基。"
+            description = description + "\n\nThis sample is supposed to be converted to " + base_of_interest + f"\n\n此样品期望被转为{base_of_interest}"
 
-        sub_title_3 = "\n\n## Base call table in each position around " + target_seq + "\n"
-        sheet = perc_around_guide_sheet.to_markdown()
+        sub_title_3 = "\n\n## Base call raw data in each position around " + target_seq + "原始数据表\n"
+        sheet = "\n\n" + perc_around_guide_sheet.to_markdown() + "\n\n"
         sheet_annotation = """\n\n This sheet shows the possibilities of each base at each sequencing position.\n\nIt's the same as the heatmap above.
-                                \n\nYou can copy the entire sheet and pasted it to Excel for further analysis.\n\n"""
+                                \n\nYou can copy the entire sheet and pasted it to Excel for further analysis.\n\n
+                                原始数据表,利用这些数据可以生成上图。如果需要进行更多的分析或者重新绘图，请直接复制下表并粘贴到excel进行后续处理\n\n
+                                """
         content = [title, description, sep, sub_title_1, sanger_plot_md, Fig1_annotation, sep, sub_title_2,
                    heatmap_plot_md, Fig2_annotation, sep, sub_title_3, sheet_annotation, sheet]
 
         html_content = markdown.markdown("".join(content), extensions=["tables"])
         with open(save_path, "w") as f:
+            header = """
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<html>
+	<body>"""
+            footer = """</body>
+</html>"""
             f.write(html_content)
 
 
