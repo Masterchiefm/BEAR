@@ -403,19 +403,15 @@ class SangerBaseCall:
 
         sub_title_2 = "\n\n## Base call result in each position around " + target_seq + "靶位点及其上下游各碱基的信号强度\n"
         Fig2_annotation = """\n\nThis figure shows the possibilities of each base at each sequencing position. 
-                                Guide position at the botton line shows the relative position to your guide RNA.\n\n
-                                
-                                此图展示了各位点上各个碱基的信号强度，
-                                """
+                                Guide position at the botton line shows the relative position to your guide RNA.\n\n此图展示了各位点上各个碱基的信号强度"""
         if base_of_interest != "":
-            Fig2_annotation = Fig2_annotation + "\n\nThe red rectangle is the base you want to convert to.\n\n红框为你要改变的碱基。"
+            Fig2_annotation = Fig2_annotation + "\n\nThe red rectangle is the base you want to convert to.\n\n红框为你要改变成为的碱基。"
             description = description + "\n\nThis sample is supposed to be converted to " + base_of_interest + f"\n\n此样品期望被转为{base_of_interest}"
 
         sub_title_3 = "\n\n## Base call raw data in each position around " + target_seq + "原始数据表\n"
         sheet = "\n\n" + perc_around_guide_sheet.to_markdown() + "\n\n"
         sheet_annotation = """\n\n This sheet shows the possibilities of each base at each sequencing position.\n\nIt's the same as the heatmap above.
-                                \n\nYou can copy the entire sheet and pasted it to Excel for further analysis.\n\n
-                                原始数据表,利用这些数据可以生成上图。如果需要进行更多的分析或者重新绘图，请直接复制下表并粘贴到excel进行后续处理\n\n
+                                \n\nYou can copy the entire sheet and pasted it to Excel for further analysis.\n\n原始数据表,利用这些数据可以生成上图。如果需要进行更多的分析或者重新绘图，请直接复制下表并粘贴到excel进行后续处理\n\n
                                 """
         content = [title, description, sep, sub_title_1, sanger_plot_md, Fig1_annotation, sep, sub_title_2,
                    heatmap_plot_md, Fig2_annotation, sep, sub_title_3, sheet_annotation, sheet]
